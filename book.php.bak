@@ -1,0 +1,272 @@
+<?php include 'admin/config/form2conn.php';
+
+
+//<-- dynamical data add krne ki query -->
+
+$sql ="select*from product";
+
+$query =mysqli_query($conn,$sql);
+// print_r($query);
+$pquery =mysqli_fetch_array($query);
+// print_r($pquery);
+
+//<-- dynamical data add krne ki query -->
+
+
+
+
+?>
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	  <title>Online Shopping Site For Fashion</title>
+	    <link rel = "icon" href = 
+"image/logom.jpg" 
+        type = "image/x-icon">
+	<?php include 'include/head.php';?>
+	</head>
+<body>
+
+	<?php include 'include/nav.php';?>
+	<?php include 'include/nav2.php';?>
+	
+	
+<div class="form-price-range-filter">
+    <div method="post" action="">
+        <div>
+            <input type="" id="min" name="min_price"
+                value="<?php echo $min; ?>">
+            <div id="slider-range"></div>
+            <input type="" id="max" name="max_price"
+                value="<?php echo $max; ?>">
+        </div>
+        <div>
+            <input type="submit" name="submit_range"
+                value="Filter Product" class="btn-submit">
+        </div>
+    </div>
+</div>	
+<?php
+
+
+$result = mysqli_query($conn, "select * from product where Price BETWEEN '%$min%' AND '%$max%'");
+
+$count = mysqli_num_rows($result);
+if ($count > 0) {
+    ?>
+<hr>
+    <div class="container">
+        <table class="tutorial-table" cellspacing="1px" width="100%">
+            <tr>
+                <th>Product name</th>
+                <th>Code</th>
+                <th class="text-right">Price (in $)</th>
+            </tr>
+     <?php
+    while ($row = mysqli_fetch_array($result)) {
+        ?>
+    
+        <tr>
+                <td><img class="product-thumb" src="<?php echo $row['image']; ?>" /><?php echo $row['name']; ?></td>
+                <td><?php echo $row['code']; ?></td>
+                <td class='text-right'><?php echo $row['price']; ?></td>
+            </tr>
+<?php
+    } // end while
+} else {
+    ?>
+<div class="no-result">No Results</div>
+<?php
+}
+
+mysqli_free_result($result);
+
+mysqli_close($conn);
+echo $output;
+
+?>
+
+<section class="m3 annmate">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 p-0 ">
+				<div class="coll down ">
+					<h1>Lowest Prices</h1>
+					<h1>Best Quality Shopping</h1>
+					<div class="bgw">
+						<h6>25+ Crores worth Rewards | 500 Winners every Hour</h6>
+					</div>
+					<button>Download the Meesho App</button>
+				</div>
+			</div>
+			<div class="col-md-6 p-0">
+				<div>
+					<img src="image/off.jpg"  class="anmate"/>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="mmb">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="text-center">
+					<h1>Top Categories to choose from</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="">
+	<div class="container">
+		<div class="position-relative back4">
+			<div class="d-flex">
+				<div  class="west2">
+					<img src="image/women.jpg"/>
+				</div>
+				<div class="west">
+					<img src="image/men.jpg"/>
+				</div>
+				<div class="west">
+					<img src="image/kids.jpg"/>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="">
+	<div class="container">
+		<div class="position-relative back">
+			<div class="row">
+				<div class="col-md-4 p-0">
+				</div>
+				<div class="col-md-8 d-flex p-0">
+					<div class="sofa">
+						<img src="image/beauty.jpg"/>
+						<img src="image/16.png"/>
+					</div>
+					<div class="sofa">
+						<img src="image/electronic.jpg"/>
+						<img src="image/80.png"/>
+					</div>
+					<div class="sofa">
+						<img src="image/speaker.jpg"/>
+						<img src="image/88.png"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="">
+	<div class="container">
+		<div class="position-relative back3">
+			<div class="row">
+				<div class="col-md-4 p-0">
+					<div class="text-center position-relative">
+						<div class="home">
+							<h1>Homecare</h1>
+							<button>VIEW ALL</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-8 d-flex p-0">
+					<div class="sofa">
+						<img src="image/sofa.png"/>
+						<button>Bedsheets</button>
+					</div>
+					<div class="sofa">
+						<img src="image/cooker.png"/>
+						<button>Kitchenware</button>
+					</div>
+					<div class="sofa">
+						<img src="image/carpet.png"/>
+						<button>Carpets</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="">
+	<div class="container back2">
+		<div class="row">
+			<div class="col-md-4 ">
+				<div class="text-center">
+					
+				</div>
+			</div>
+			<div class="col-md-8 pp">
+				<div class="text-right become">
+					<h4>Become a Reseller and</h4>
+					<h3>Start your Online Business<br>
+with Zero Investment</h3>
+					<button type="button" class="btn btn-dark"><img src="image/google.png" class="sev"/></button>
+					<button type="button" class="btn btn-dark"><img src="image/app.png" class="sev"/></button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section>
+	<div class="container supply">
+		<div class="col-md-9">
+			<div class="text-white register">
+				<h2>Register as a Meesho Supplier</h2>
+				<p>Sell your products to crores of customers at 0% commission</p>
+				<li>Grow your business 10x</li>
+				<li>Enjoy 100% Profit</li>
+				<li>Sell all over India</li>
+			</div>
+				<button type="button" class="btn bg-white pinnk">Sign up Now</button>
+		</div>
+		<div class="col-md-3">
+		</div>
+	</div>
+</section>
+
+<section class="for">
+	<div class="container">
+		<div>
+			<h1>Product For You</h1>
+		</div>
+	</div>
+</section>
+
+<!--products list-->
+
+<?php
+
+include 'include/product-list.php';
+
+?>
+
+
+<!--products list-->
+
+<!--contact us-->
+<?php
+include 'include/contactus.php';
+?>
+
+<!--contact us-->
+<!--foot-->
+<?php include 'include/foot.php';?>
+<!--foot-->
+
+<!--script-->
+	<?php include 'include/footer.php';?>
+<!--script-->
+</body>
+</html>

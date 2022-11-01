@@ -1,0 +1,70 @@
+ <?php 
+
+  include 'config/form2conn.php';
+  
+     if(isset($_GET['search'])){
+        $searchKey = $_GET['search'];
+        $sql = "SELECT * FROM product WHERE Productname LIKE '%$searchKey%'OR Price LIKE '%$searchKey%' or id LIKE '%$searchKey%'";
+     }else
+     $sql = "SELECT * FROM product";
+     $result=mysqli_query($conn,$sql);
+	 // $srch=mysqli_fetch_array($result);
+	// print_r($srch);
+	 
+   ?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <title>PHP Search</title>
+</head>
+<body>
+<div class="container">
+   <div class="row">
+   <div class="col-md-8 col-md-offset-2" style="margin-top: 5%;">
+   <div class="row">
+
+  
+
+   <form action="" method="GET"> 
+     <div class="col-md-6">
+        <input type="text" name="search" class='form-control' placeholder="Search By Name" value=<?php echo @$_GET['search']; ?> > 
+     </div>
+     <div class="col-md-6 text-left">
+      <button class="btn">Search</button>
+     </div>
+   </form>
+
+   <br> 
+   <br>
+</div>
+
+<table class="table table-bordered">
+  <tr>
+     <th>Id</th>
+     <th>Image</th>
+     <th>Productname</th>
+     <th>Price</th>
+     <th>Size</th>
+     <th>Description</th>
+  </tr>
+  <?php while($srch=mysqli_fetch_array($result)){?>
+  <tr>
+	
+     <td><?php echo $srch['id'];?></td>
+	 <td><img src="img/userphoto/<?php echo $srch['image'];?>" style="width:100px; " class="rounded-circle"/></td>
+     <td><?php echo $srch['Productname']; ?></td>
+     <td><?php echo $srch['Price'];?></td>
+     <td><?php echo $srch['Size']; ?></td>
+     <td><?php echo $srch['Description']; ?></td>
+  </tr>
+  <?php } ?>
+</table>
+</div>
+</div>
+</div>
+</body>
+</html>

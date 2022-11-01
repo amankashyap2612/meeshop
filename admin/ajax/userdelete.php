@@ -1,0 +1,19 @@
+<?php
+
+	include '../config/form2conn.php';
+
+$delete =$_GET['del'];
+print_r($delete);
+	$sql="delete from user Where id='".$delete."'";
+
+	$result=mysqli_query($conn,$sql);
+	
+	if($result){
+		
+		header("Location: ../usertable.php");
+	}else{
+		echo "something worng";
+	}
+
+
+?>

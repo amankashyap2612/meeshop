@@ -1,0 +1,31 @@
+<?php
+	include '../config/form2conn.php';
+
+	$id = $_POST['T_id'];
+	$photo = $_FILES['T_photo'];
+	$name = $_POST['T_name'];
+	$price = $_POST['T_price'];
+	$size	= $_POST['T_size'];
+	$description = $_POST['T_description'];
+	
+	$temp = $photo['tmp_name'];
+	//print_r($photo);
+	$date = date('y-m-d-H-i-s');
+	
+	//echo $date;
+	
+	$filename = $date."photo.jpg";
+	print_r($filename);
+	move_uploaded_file($temp, '../img/userphoto/'.$filename);
+	
+	
+	
+	$sql = "update product set image='".$filename."',Productname = '".$name."', Price = '".$price."',Size = '".$size."', Description= '".$description."' where id = '".$id."' ";
+	$query = mysqli_query($conn, $sql);
+	
+	if($query){
+		echo 1;
+	} else {
+		echo 0;
+	}
+?>

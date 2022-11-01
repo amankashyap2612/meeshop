@@ -1,0 +1,26 @@
+body{    background: linear-gradient(rgb(253, 233, 242) 0%, rgb(253, 240, 232) 100%, rgb(253, 240, 232) 100%);}
+
+.banner img{width: 400px;
+    border-radius: 7px;
+}
+
+.mauto{    margin: auto;
+    width: 400px;
+    margin-top: 30px;
+	background: white;
+}
+
+
+.sign{    padding: 30px;
+    text-align: left;
+}
+
+.sign button{background: #f43397;
+    color: white;
+    border: 0;
+    padding: 10px 30px;
+    width: 340px;
+	    margin-top: 30px;
+}
+
+.sign h5{    margin-top: 20px;}

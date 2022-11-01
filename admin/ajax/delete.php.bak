@@ -1,0 +1,18 @@
+<?php include '../config/form2conn.php';?>
+
+<?php
+$delete=$_GET['del'];
+	//print_r($delete);
+	$sql="delete from product Where id='".$delete."'";
+	// $result=mysqli_query($conn,$sql);
+	$result=mysqli_query($conn,$sql);
+	
+	if($result){
+		
+		// echo "successfully delete";
+		
+		header("Location: ../table.php");
+	}else{
+		echo "something worng";
+	}
+?>

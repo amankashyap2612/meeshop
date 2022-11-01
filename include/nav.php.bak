@@ -1,0 +1,105 @@
+<?php
+
+include 'admin/config/form2conn.php';
+
+
+
+
+	session_start();
+	if(isset($_SESSION['token'])){
+		$userid = $_SESSION['token'];
+		$userdata = "select * from user where id = '".$userid."'";
+		$getuser = mysqli_query($conn, $userdata);
+		$userinfo = mysqli_fetch_array($getuser);
+		print_r($userinfo['name']);
+	}
+	
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/book.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+
+</head>
+<body>
+
+<section class="sec1 ">
+	<div class="container-fluid">
+		<div class="">
+					<nav class="navbar navbar-expand-md   navbar-dark text-dark justify-content-end">
+					
+					  <a class="navbar-brand text-dark" href="#"><span style="font-size:25px;"><img src="image/meesho.jpg"/></span></a>
+					  <input placeholder="Try Sarees,Kurti or Search By Product" class="inp"/>
+					  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+						<span class="navbar-toggler-icon"></span>
+					  </button>
+					  <div class="collapse navbar-collapse ul" id="collapsibleNavbar">
+						<ul class="navbar-nav ml-auto ">
+						  <li class="nav-item ">
+							<a class="nav-link text-dark " href="#" style="margin: 0 20px;"><i class="fa-solid fa-mobile-screen" style="    font-size: 20px;
+							margin-right: 10px;"></i>Download app</a>
+							<a class="nav-link text-dark " href="#"></a>
+						  </li>
+						  
+						  
+						  
+						   <?php
+				if(isset($_SESSION['token'])){
+					?>
+							<div class="dropdown">
+							  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<?php echo $userinfo['name'] ?>
+							  </button>
+							  <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton" style="width: 210px;">
+								<div><a class="hlo text-left"  style="margin-right:5px;"><i class="fa-solid fa-mobile-retro" style="margin-right:5px;"></i><?php echo $userinfo['mobile'] ?></a>
+								</div>
+							  <div><a class="text-left" ><i class="fa-solid fa-at" style="margin-right:5px;"></i><?php echo $userinfo['email'] ?></a></div>
+							 
+							  <hr>
+							  <div><button type="button" class="btn btn-success"><i class="fa-solid fa-cart-arrow-down"></i>Order</button>
+<a href="../user_logout.php" type="button" class="btn btn-danger"><i class="fa-solid fa-arrow-right-from-bracket" ></i>Log Out</a>
+
+							  </div>
+							  
+							  </div>
+							</div>
+					<?php
+				} else {
+					?>
+					<i class="fa-solid fa-user" style="font-size:30px; margin: 0 20px;" id="hvr" ></i>  
+							 
+							  <a class="text-center sss" href="http://localhost/meesho/signup.php" >SIGN UP</a>
+							  <hr>
+					<?php
+				}
+			  ?>
+						  
+						  <li class="nav-item">
+							<a class="nav-link text-dark" href="#" style="margin: 0 20px;">Become a Suppliers</a>
+						  </li>
+						  
+						</ul>
+					  </div>  
+					</nav>
+				</div>
+		</div>
+</section>
+
+
+
+<script src="../js/jquery.slim.min.js"></script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/book.js"></script>
+
+</body>
+</html>
+
+

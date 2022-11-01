@@ -1,0 +1,6 @@
+<?php 
+
+	$file = $_FILES['T_photo'];
+	
+	print_r($file);
+?>
